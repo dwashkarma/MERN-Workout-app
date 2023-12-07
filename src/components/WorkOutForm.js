@@ -6,10 +6,14 @@ function WorkOutForm() {
   const [load, setLoad] = useState("");
   const [reps, setReps] = useState("");
   const [error, setError] = useState("");
-  const {dispatch}=useWorkoutContext()
+  const { dispatch } = useWorkoutContext();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!title || !load || !reps) {
+      setError("Please fill in all fields.");
+      return;
+    }
     const workout = { title, load, reps };
     const response = await fetch("/api/workouts", {
       method: "POST",
@@ -27,7 +31,7 @@ function WorkOutForm() {
       setTitle("");
       setLoad("");
       setReps("");
-dispatch({type:'CREATE_WORKOUTS',payload:json})
+      dispatch({ type: "CREATE_WORKOUTS", payload: json });
       console.log("Added", response);
     }
   };
@@ -39,7 +43,7 @@ dispatch({type:'CREATE_WORKOUTS',payload:json})
           <label className="text-uppercase   fw-semibold">Title</label>
           <br />
           <input
-            className="form-control"
+            className={`form-control ${!title && "input-error"}`}
             onChange={(e) => setTitle(e.target.value)}
             value={title}
           />
@@ -49,17 +53,17 @@ dispatch({type:'CREATE_WORKOUTS',payload:json})
           <label className="text-uppercase  fw-semibold">Load (in kg)</label>
           <br />
           <input
-            className="form-control"
+            className={`form-control ${!load && "input-error"}`}
             onChange={(e) => setLoad(e.target.value)}
             value={load}
           />
         </div>
 
         <div>
-          <label className="text-uppercase  fw-semibold">Reps</label>
+          <label className="text-uppercase  fw-semibold">Reps (no.)</label>
           <br />
           <input
-            className="form-control"
+            className={`form-control ${!reps && "input-error"}`}
             onChange={(e) => setReps(e.target.value)}
             value={reps}
           />
@@ -67,7 +71,8 @@ dispatch({type:'CREATE_WORKOUTS',payload:json})
         <button className="btn btn-success my-4" value="submit">
           ADD WORKOUT
         </button>
-        {error && <div className="text-danger">{error}</div>}
+        {error && <div className=" fw-semibold text-danger rounded-pill border  border-danger p-3 ">
+         {error}</div>}
       </form>
     </div>
   );
