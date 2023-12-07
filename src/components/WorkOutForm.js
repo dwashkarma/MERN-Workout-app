@@ -36,9 +36,9 @@ function WorkOutForm() {
     }
   };
   return (
-    <div className="text-start position-sticky ">
+    <div className="text-start position-sticky border rounded-2 shadow-lg p-3 mb-5 bg-body-tertiary rounded ">
       <form className="my-4 " onSubmit={handleSubmit}>
-        <h3 className="my-4 fw-semibold">Add your Workouts</h3>
+        <p className="my-4 fw-semibold text-success h3 fw-semibold">Add your Workouts</p>
         <div>
           <label className="text-uppercase   fw-semibold">Title</label>
           <br />
