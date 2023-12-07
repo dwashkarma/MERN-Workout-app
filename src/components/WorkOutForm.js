@@ -36,7 +36,7 @@ function WorkOutForm() {
     }
   };
   return (
-    <div className="text-start ">
+    <div className="text-start position-sticky ">
       <form className="my-4 " onSubmit={handleSubmit}>
         <h3 className="my-4 fw-semibold">Add your Workouts</h3>
         <div>
@@ -71,8 +71,11 @@ function WorkOutForm() {
         <button className="btn btn-success my-4" value="submit">
           ADD WORKOUT
         </button>
-        {error && <div className=" fw-semibold text-danger rounded-pill border  border-danger p-3 ">
-         {error}</div>}
+        {error && (
+          <div className=" fw-semibold text-danger rounded-pill border  border-danger p-3 ">
+            {error}
+          </div>
+        )}
       </form>
     </div>
   );

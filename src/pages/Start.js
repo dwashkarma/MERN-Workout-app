@@ -23,16 +23,16 @@ const Start = () => {
   }, [dispatch]);
 
   return (
-    <div className="row align-items-start my-4 ">
-      <div className="col col-8">
-        <header className="fw-bold text-uppercase  my-3">your task</header>
+    <div className="row  align-items-start mx-0 my-4 ">
+      <div className=" col-10 col-md-5 col-lg-4 mx-3 ">
+        <WorkOutForm />
+      </div>
+      <div className="col-12 col-md-6 col-lg-7 ">
+        <header className="fw-bold text-uppercase h3  my-3"> workouts</header>
         {workouts &&
           workouts.map((workout) => {
             return <WorkOutDetails key={workout._id} workout={workout} />;
           })}
-      </div>
-      <div className="col col-3 mx-5 ">
-        <WorkOutForm />
       </div>
     </div>
   );
